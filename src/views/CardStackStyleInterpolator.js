@@ -33,11 +33,9 @@ function forInitial(props: NavigationSceneRendererProps): Object {
   } = props;
 
   const focused = navigationState.index === scene.index;
-  const opacity = focused ? 1 : 0;
   // If not focused, move the scene far away.
   const translate = focused ? 0 : 1000000;
   return {
-    opacity,
     transform: [
       { translateX: translate },
       { translateY: translate },
@@ -69,12 +67,6 @@ function forHorizontal(props: NavigationSceneRendererProps): Object {
     ([-width, 0, 10, 10]: Array<number>) :
     ([width, 0, -10, -10]: Array<number>);
 
-
-  const opacity = position.interpolate({
-    inputRange,
-    outputRange: ([1, 1, 0.3, 0]: Array<number>),
-  });
-
   const translateY = 0;
   const translateX = position.interpolate({
     inputRange,
@@ -82,7 +74,6 @@ function forHorizontal(props: NavigationSceneRendererProps): Object {
   });
 
   return {
-    opacity,
     transform: [
       { translateX },
       { translateY },
@@ -108,11 +99,6 @@ function forVertical(props: NavigationSceneRendererProps): Object {
   const inputRange = [index - 1, index, index + 0.99, index + 1];
   const height = layout.initHeight;
 
-  const opacity = position.interpolate({
-    inputRange,
-    outputRange: ([1, 1, 0.3, 0]: Array<number>),
-  });
-
   const translateX = 0;
   const translateY = position.interpolate({
     inputRange,
@@ -120,7 +106,6 @@ function forVertical(props: NavigationSceneRendererProps): Object {
   });
 
   return {
-    opacity,
     transform: [
       { translateX },
       { translateY },
@@ -146,11 +131,6 @@ function forFadeFromBottomAndroid(props: NavigationSceneRendererProps): Object {
   const inputRange = [index - 1, index, index + 0.99, index + 1];
   const height = layout.initHeight;
 
-  const opacity = position.interpolate({
-    inputRange,
-    outputRange: ([0, 1, 1, 0]: Array<number>),
-  });
-
   const translateX = 0;
   const translateY = position.interpolate({
     inputRange,
@@ -158,7 +138,6 @@ function forFadeFromBottomAndroid(props: NavigationSceneRendererProps): Object {
   });
 
   return {
-    opacity,
     transform: [
       { translateX },
       { translateY },
